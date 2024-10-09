@@ -35,33 +35,26 @@ counterDiv.textContent = `Counter: ${counter} boxes of takeout`;
 // Append the counter div to the app div
 app.appendChild(counterDiv);
 
-// // Add a click event listener to the button
-// button.addEventListener('click', () => {
-//     counter++; // Increment the counter
-//     counterDiv.textContent = `Counter: ${counter} boxes of takeout`; // Update counter display
-//     // console.log('Button was clicked!');
-//     // alert('test');
-// });
-
-//------------------incrementation-------------------------
-
-// Function to update counter display
-const updateCounter = () => {
-    counterDiv.textContent = `Counter: ${counter} boxes of takeout`;
-}
-
 // Add a click event listener to the button
 button.addEventListener('click', () => {
     counter++; // Increment the counter
-    updateCounter();
     counterDiv.textContent = `Counter: ${counter} boxes of takeout`; // Update counter display
     // console.log('Button was clicked!');
     // alert('test');
 });
 
+//------------------incrementation-------------------------
 
-// Increment the counter automatically every second
-setInterval(() => {
-    counter++; // Increment the counter
-    updateCounter(); // Update counter display
-}, 1000); // 1000ms = 1 second
+// Increment the counter slightly for smooth animation
+const increment = 1 / 60; // Amount to increment per frame
+const updateCounter = () => {
+    counter += increment; // Add fractional amount per frame
+    counterDiv.textContent = `Counter: ${Math.floor(counter)} boxes of takeout`; // Update display
+
+    // Schedule the next frame
+    requestAnimationFrame(updateCounter);
+}
+
+// Start the incrementation
+requestAnimationFrame(updateCounter);
+
