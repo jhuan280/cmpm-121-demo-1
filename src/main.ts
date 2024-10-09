@@ -19,8 +19,26 @@ button.textContent = '🥡';
 // Add a click event listener to the button
 button.addEventListener('click', () => {
     console.log('Button was clicked!');
-    alert('This button will eventually do something cool!');
+    // alert('test');
 });
 
 // Append the button 
 app.appendChild(button);
+
+//------------------counter-------------------------
+
+// Create a div element to display the counter
+const counterDiv = document.createElement("div");
+let counter = 0; // Initialize counter
+counterDiv.textContent = `Counter: ${counter} boxes of takeout`;
+
+// Append the counter div to the app div
+app.appendChild(counterDiv);
+
+// Add a click event listener to the button
+button.addEventListener('click', () => {
+    counter++; // Increment the counter
+    counterDiv.textContent = `Counter: ${counter} boxes of takeout`; // Update counter display
+    console.log('Button was clicked!');
+    // alert('test');
+});
