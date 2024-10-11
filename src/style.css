@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: orange; /* Changed to orange */
+  background-color: orange; /* Background color set to orange */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -65,7 +65,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: orange; /* Changed to orange in light mode */
+    background-color: orange; /* Maintain orange background for light mode */
   }
   a:hover {
     color: #747bff;
@@ -76,7 +76,7 @@ button:focus-visible {
 }
 
 .main-button {
-  font-size: 10em; /* Large emoji size */
+  font-size: 10em; /* Large emoji size for the main button */
   padding: 10px 20px;
   border-radius: 8px;
   background-color: transparent; /* Transparent background */
@@ -86,8 +86,19 @@ button:focus-visible {
 
 .upgrades-container {
   display: flex;
-  justify-content: space-around; /* Space between the buttons */
-  align-items: center; /* Center align items vertically */
-  flex-wrap: wrap; /* Allow wrapping if there's limited space */
-  gap: 20px; /* Optional: Space between items within the container */
+  justify-content: space-around; /* Space between the items in the container */
+  align-items: center; /* Align items vertically */
+  flex-wrap: wrap; /* Allow wrapping for responsive layout */
+  gap: 20px; /* Space between items in the container */
+}
+
+.upgrade-item {
+  display: flex;
+  flex-direction: row; /* Align button and price side by side */
+  align-items: center; /* Vertically center items */
+  gap: 5px; /* Reduced space between button and price */
+}
+
+.upgrade-item p {
+  margin: 0; /* Remove default margin from price paragraph */
 }

@@ -42,7 +42,9 @@ interface Item {
 const availableItems: Item[] = [
   {name: "Eggrolls 🍣", cost: 10, rate: 1, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
   {name: "Sushi 🍱", cost: 100, rate: 2, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
-  {name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')}
+  {name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
+  {name: "Noodles 🍜", cost: 5000, rate: 150, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
+  {name: "Riceballs 🍙", cost: 10000, rate: 300, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')}
 ];
 
 // Create a container for the upgrade buttons
