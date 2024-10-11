@@ -179,5 +179,6 @@ const checkUpgradeAvailability = () => {
     upgradeButton3.disabled = Math.floor(counter) < Math.floor(priceDumplings); // Enable upgrade button 3 if affordable
 }
 
+
 // Start the incrementation
 requestAnimationFrame(updateCounter);
