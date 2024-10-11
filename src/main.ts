@@ -2,8 +2,8 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-//title
-const gameName = "Jackie's amazing game";
+// Title
+const gameName = "Jackie's Amazing Game";
 document.title = gameName;
 
 const header = document.createElement("h1");
@@ -24,32 +24,64 @@ mainButton.addEventListener('click', () => {
     counter++; // Increment the counter by 1 on button click
     counterDiv.textContent = `Counter: ${Math.floor(counter)} boxes of takeout`; // Update counter display
     console.log('Main button was clicked!');
-    checkUpgradeAvailability(); // Check if upgrade can be enabled
+    checkUpgradeAvailability(); // Check if upgrades can be enabled
 });
 
-//------------------upgrade button-------------------------
+//------------------upgrade buttons-------------------------
 
-// Create an upgrade button element
-const upgradeButton = document.createElement('button');
-upgradeButton.textContent = 'Upgrade Item 🌟';
-upgradeButton.disabled = true;
+// Create the first upgrade button element
+const upgradeButton1 = document.createElement('button');
+upgradeButton1.textContent = 'Purchase eggrolls 🍣';
+upgradeButton1.disabled = true;
 
+// Append the first upgrade button to the app div
+app.appendChild(upgradeButton1);
 
-// Append the upgrade button to the app div
-app.appendChild(upgradeButton);
-
-// Add a click event listener to the upgrade button
-upgradeButton.addEventListener('click', () => {
+// Add a click event listener to the first upgrade button
+upgradeButton1.addEventListener('click', () => {
     if (counter >= 10) {
         console.log('Upgrade button was clicked!');
         counter -= 10; // Deduct 10 units from the counter
-        increment += 1 / 60; // Increase the growth rate to add 1 per second
+        increment += 1; // 1 unit per second
         checkUpgradeAvailability(); // Re-check after purchase
-        // upgradeButton.disabled = true; // Disable the button post-purchase to prevent repeated purchases
-        // counterDiv.textContent = `Counter: ${Math.floor(counter)} boxes of takeout`; // Update counter display
     }
 });
 
+// Create the second upgrade button element
+const upgradeButton2 = document.createElement('button');
+upgradeButton2.textContent = 'Purchase sushi 🍱';
+upgradeButton2.disabled = true;
+
+// Append the second upgrade button to the app div
+app.appendChild(upgradeButton2);
+
+// Add a click event listener to the second upgrade button
+upgradeButton2.addEventListener('click', () => {
+    if (counter >= 100) {
+        console.log('Super Upgrade button was clicked!');
+        counter -= 100; // Deduct 100 units from the counter
+        increment += 2; // 2 units per second
+        checkUpgradeAvailability(); // Re-check after purchase
+    }
+});
+
+// Create the third upgrade button element
+const upgradeButton3 = document.createElement('button');
+upgradeButton3.textContent = 'Purchase dumplings 🥟';
+upgradeButton3.disabled = true;
+
+// Append the third upgrade button to the app div
+app.appendChild(upgradeButton3);
+
+// Add a click event listener to the third upgrade button
+upgradeButton3.addEventListener('click', () => {
+    if (counter >= 1000) {
+        console.log('Dumplings upgrade was purchased!');
+        counter -= 1000; // Deduct 1000 units from the counter
+        increment += 50; // 50 units per second
+        checkUpgradeAvailability(); // Re-check after purchase
+    }
+});
 
 //------------------counter-------------------------
 
@@ -61,34 +93,26 @@ counterDiv.textContent = `Counter: ${counter} boxes of takeout`;
 // Append the counter div to the app div
 app.appendChild(counterDiv);
 
-// // Add a click event listener to the button
-// button.addEventListener('click', () => {
-//     counter++; // Increment the counter
-//     counterDiv.textContent = `Counter: ${counter} boxes of takeout`; // Update counter display
-//     // console.log('Button was clicked!');
-//     // alert('test');
-// });
-
 //------------------incrementation-------------------------
 
-let increment = 0; // Set the initial increment to 0, so no automatic increase at start
+let increment = 0; // Set the initial increment growth rate
+let lastTimestamp = performance.now(); // Initialize last timestamp for calculation
 
-const updateCounter = () => {
-    counter += increment; // Add fractional amount per frame based on current increment
-    counterDiv.textContent = `Counter: ${Math.floor(counter)} boxes of takeout`; // Update display
+const updateCounter = (currentTimestamp: number) => {
+    const deltaTime = (currentTimestamp - lastTimestamp) / 1000; // Calculate time difference in seconds
+    counter += increment * deltaTime; // Increment counter based on actual elapsed time
+    counterDiv.textContent = `Counter: ${Math.floor(counter)} boxes of takeout`; // Update counter display
 
-    checkUpgradeAvailability(); // Check if upgrade can be enabled
-    // Schedule the next frame
-    requestAnimationFrame(updateCounter);
+    checkUpgradeAvailability(); // Re-check if upgrades can be enabled
+    lastTimestamp = currentTimestamp; // Update last timestamp for next frame
+    requestAnimationFrame(updateCounter); // Schedule the next frame
 }
 
-// Function to enable the "Upgrade" button when conditions are met
+// Function to enable the upgrade buttons when conditions are met
 const checkUpgradeAvailability = () => {
-    if (counter >= 10) {
-        upgradeButton.disabled = false; // Enable upgrade button
-    } else {
-        upgradeButton.disabled = true; // Disable if can't afford
-    }
+    upgradeButton1.disabled = counter < 10;  // Enable upgrade button 1 if affordable
+    upgradeButton2.disabled = counter < 100; // Enable upgrade button 2 if affordable
+    upgradeButton3.disabled = counter < 1000; // Enable upgrade button 3 if affordable
 }
 
 // Start the incrementation
