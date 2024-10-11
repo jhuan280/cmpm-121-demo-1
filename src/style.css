@@ -74,3 +74,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.main-button {
+  font-size: 10em; /* Large emoji size */
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: transparent; /* Transparent background */
+  border: none;
+  cursor: pointer;
+}
+
+

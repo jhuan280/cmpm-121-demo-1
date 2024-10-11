@@ -13,10 +13,12 @@ app.append(header);
 //------------------primary button-------------------------
 
 // Create the main button element
+
 const mainButton = document.createElement('button');
 mainButton.textContent = '🥡';
+mainButton.classList.add('main-button');
 
-// Append the main button to the app div
+// Append the main button to the app div, right after the title
 app.appendChild(mainButton);
 
 // Add a click event listener to the main button
@@ -25,6 +27,12 @@ mainButton.addEventListener('click', () => {
     updateCounterDisplay(); // Update counter display
     checkUpgradeAvailability(); // Check if upgrades can be enabled
 });
+
+//------------------delimiter-------------------------
+
+// Add a delimiter or horizontal line if needed to separate sections
+const delimiter = document.createElement("hr");
+app.appendChild(delimiter);
 
 //------------------upgrade buttons-------------------------
 
