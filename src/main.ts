@@ -3,7 +3,7 @@ import "./style.css";
 const app: HTMLDivElement = document.querySelector("#app")!;
 
 // Title
-const gameName = "Jackie's Amazing Game";
+const gameName = "Jackie's Restaurant";
 document.title = gameName;
 
 const header = document.createElement("h1");
