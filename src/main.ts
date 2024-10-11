@@ -40,75 +40,86 @@ let dumplingsPurchased = 0;
 
 let increment = 0; // Set the initial increment growth rate
 
+// Initial prices
+let priceEggrolls = 10;
+let priceSushi = 100;
+let priceDumplings = 1000;
+
 // Create the first upgrade button element
 const upgradeButton1 = document.createElement('button');
-upgradeButton1.textContent = 'Purchase eggrolls 🍣';
+upgradeButton1.textContent = 'Purchase Eggrolls 🍣';
 upgradeButton1.disabled = true;
 
 // Price display for eggrolls
-const priceEggrolls = document.createElement("p");
-priceEggrolls.textContent = 'Price: 10 boxes';
+const priceDisplayEggrolls = document.createElement("p");
+priceDisplayEggrolls.textContent = `Price: ${Math.floor(priceEggrolls)} boxes`;
 
 // Append the first upgrade button and its price to the container
 upgradesContainer.appendChild(upgradeButton1);
-upgradesContainer.appendChild(priceEggrolls);
+upgradesContainer.appendChild(priceDisplayEggrolls);
 
 // Add a click event listener to the first upgrade button
 upgradeButton1.addEventListener('click', () => {
-    if (counter >= 10) {
-        counter -= 10; // Deduct 10 units from the counter
+    if (counter >= Math.floor(priceEggrolls)) {
+        counter -= Math.floor(priceEggrolls); // Deduct units from the counter
         increment += 1; // 1 unit per second
+        priceEggrolls *= 1.15; // Increase the price
         eggrollsPurchased++;
         updateStatusDisplay(); // Update status display
         checkUpgradeAvailability(); // Re-check after purchase
+        priceDisplayEggrolls.textContent = `Price: ${Math.floor(priceEggrolls)} boxes`; // Update price display
     }
 });
 
 // Create the second upgrade button element
 const upgradeButton2 = document.createElement('button');
-upgradeButton2.textContent = 'Purchase sushi 🍱';
+upgradeButton2.textContent = 'Purchase Sushi 🍱';
 upgradeButton2.disabled = true;
 
 // Price display for sushi
-const priceSushi = document.createElement("p");
-priceSushi.textContent = 'Price: 100 boxes';
+const priceDisplaySushi = document.createElement("p");
+priceDisplaySushi.textContent = `Price: ${Math.floor(priceSushi)} boxes`;
 
 // Append the second upgrade button and its price to the container
 upgradesContainer.appendChild(upgradeButton2);
-upgradesContainer.appendChild(priceSushi);
+upgradesContainer.appendChild(priceDisplaySushi);
 
 // Add a click event listener to the second upgrade button
 upgradeButton2.addEventListener('click', () => {
-    if (counter >= 100) {
-        counter -= 100; // Deduct 100 units from the counter
+    if (counter >= Math.floor(priceSushi)) {
+        counter -= Math.floor(priceSushi); // Deduct units from the counter
         increment += 2; // 2 units per second
+        priceSushi *= 1.15; // Increase the price
         sushiPurchased++;
         updateStatusDisplay(); // Update status display
         checkUpgradeAvailability(); // Re-check after purchase
+        priceDisplaySushi.textContent = `Price: ${Math.floor(priceSushi)} boxes`; // Update price display
     }
 });
 
 // Create the third upgrade button element
 const upgradeButton3 = document.createElement('button');
-upgradeButton3.textContent = 'Purchase dumplings 🥟';
+upgradeButton3.textContent = 'Purchase Dumplings 🥟';
 upgradeButton3.disabled = true;
 
 // Price display for dumplings
-const priceDumplings = document.createElement("p");
-priceDumplings.textContent = 'Price: 1000 boxes';
+const priceDisplayDumplings = document.createElement("p");
+priceDisplayDumplings.textContent = `Price: ${Math.floor(priceDumplings)} boxes`;
 
 // Append the third upgrade button and its price to the container
 upgradesContainer.appendChild(upgradeButton3);
-upgradesContainer.appendChild(priceDumplings);
+upgradesContainer.appendChild(priceDisplayDumplings);
 
 // Add a click event listener to the third upgrade button
 upgradeButton3.addEventListener('click', () => {
-    if (counter >= 1000) {
-        counter -= 1000; // Deduct 1000 units from the counter
+    if (counter >= Math.floor(priceDumplings)) {
+        counter -= Math.floor(priceDumplings); // Deduct units from the counter
         increment += 50; // 50 units per second
+        priceDumplings *= 1.15; // Increase the price
         dumplingsPurchased++;
         updateStatusDisplay(); // Update status display
         checkUpgradeAvailability(); // Re-check after purchase
+        priceDisplayDumplings.textContent = `Price: ${Math.floor(priceDumplings)} boxes`; // Update price display
     }
 });
 
@@ -163,9 +174,9 @@ const updateCounter = (currentTimestamp: number) => {
 
 // Function to enable the upgrade buttons when conditions are met
 const checkUpgradeAvailability = () => {
-    upgradeButton1.disabled = Math.floor(counter) < 10;  // Enable upgrade button 1 if affordable
-    upgradeButton2.disabled = Math.floor(counter) < 100; // Enable upgrade button 2 if affordable
-    upgradeButton3.disabled = Math.floor(counter) < 1000; // Enable upgrade button 3 if affordable
+    upgradeButton1.disabled = Math.floor(counter) < Math.floor(priceEggrolls);  // Enable upgrade button 1 if affordable
+    upgradeButton2.disabled = Math.floor(counter) < Math.floor(priceSushi); // Enable upgrade button 2 if affordable
+    upgradeButton3.disabled = Math.floor(counter) < Math.floor(priceDumplings); // Enable upgrade button 3 if affordable
 }
 
 // Start the incrementation
