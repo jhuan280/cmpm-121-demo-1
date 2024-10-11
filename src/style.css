@@ -84,4 +84,12 @@ button:focus-visible {
   cursor: pointer;
 }
 
+.upgrades-container {
+  display: flex;
+  justify-content: space-around; /* Space between the buttons */
+  align-items: center; /* Center align items vertically */
+  flex-wrap: wrap; /* Allow wrapping if there's limited space */
+  gap: 20px; /* Optional: Space between items within the container */
+}
+
 

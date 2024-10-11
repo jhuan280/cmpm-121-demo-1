@@ -13,7 +13,6 @@ app.append(header);
 //------------------primary button-------------------------
 
 // Create the main button element
-
 const mainButton = document.createElement('button');
 mainButton.textContent = '🥡';
 mainButton.classList.add('main-button');
@@ -28,13 +27,11 @@ mainButton.addEventListener('click', () => {
     checkUpgradeAvailability(); // Check if upgrades can be enabled
 });
 
-//------------------delimiter-------------------------
+//------------------upgrade buttons container-------------------------
 
-// Add a delimiter or horizontal line if needed to separate sections
-const delimiter = document.createElement("hr");
-app.appendChild(delimiter);
-
-//------------------upgrade buttons-------------------------
+// Create a container for the upgrade buttons
+const upgradesContainer = document.createElement("div");
+upgradesContainer.classList.add('upgrades-container');
 
 // Variables to track how many of each type have been purchased
 let eggrollsPurchased = 0;
@@ -48,8 +45,13 @@ const upgradeButton1 = document.createElement('button');
 upgradeButton1.textContent = 'Purchase eggrolls 🍣';
 upgradeButton1.disabled = true;
 
-// Append the first upgrade button to the app div
-app.appendChild(upgradeButton1);
+// Price display for eggrolls
+const priceEggrolls = document.createElement("p");
+priceEggrolls.textContent = 'Price: 10 boxes';
+
+// Append the first upgrade button and its price to the container
+upgradesContainer.appendChild(upgradeButton1);
+upgradesContainer.appendChild(priceEggrolls);
 
 // Add a click event listener to the first upgrade button
 upgradeButton1.addEventListener('click', () => {
@@ -67,8 +69,13 @@ const upgradeButton2 = document.createElement('button');
 upgradeButton2.textContent = 'Purchase sushi 🍱';
 upgradeButton2.disabled = true;
 
-// Append the second upgrade button to the app div
-app.appendChild(upgradeButton2);
+// Price display for sushi
+const priceSushi = document.createElement("p");
+priceSushi.textContent = 'Price: 100 boxes';
+
+// Append the second upgrade button and its price to the container
+upgradesContainer.appendChild(upgradeButton2);
+upgradesContainer.appendChild(priceSushi);
 
 // Add a click event listener to the second upgrade button
 upgradeButton2.addEventListener('click', () => {
@@ -86,8 +93,13 @@ const upgradeButton3 = document.createElement('button');
 upgradeButton3.textContent = 'Purchase dumplings 🥟';
 upgradeButton3.disabled = true;
 
-// Append the third upgrade button to the app div
-app.appendChild(upgradeButton3);
+// Price display for dumplings
+const priceDumplings = document.createElement("p");
+priceDumplings.textContent = 'Price: 1000 boxes';
+
+// Append the third upgrade button and its price to the container
+upgradesContainer.appendChild(upgradeButton3);
+upgradesContainer.appendChild(priceDumplings);
 
 // Add a click event listener to the third upgrade button
 upgradeButton3.addEventListener('click', () => {
@@ -99,6 +111,9 @@ upgradeButton3.addEventListener('click', () => {
         checkUpgradeAvailability(); // Re-check after purchase
     }
 });
+
+// Append the upgrades container to the app div
+app.appendChild(upgradesContainer);
 
 //------------------counter and status display-------------------------
 
