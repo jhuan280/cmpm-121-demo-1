@@ -36,15 +36,16 @@ interface Item {
   purchased: number;
   priceElement: HTMLParagraphElement;
   buttonElement: HTMLButtonElement;
+  description: string;
 }
 
-// Available items
+// Available items with descriptions
 const availableItems: Item[] = [
-  {name: "Eggrolls 🍣", cost: 10, rate: 1, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
-  {name: "Sushi 🍱", cost: 100, rate: 2, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
-  {name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
-  {name: "Noodles 🍜", cost: 5000, rate: 150, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')},
-  {name: "Riceballs 🍙", cost: 10000, rate: 300, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button')}
+  {name: "Eggrolls 🍣", cost: 10, rate: 1, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Crispy and delicious eggrolls!"},
+  {name: "Sushi 🍱", cost: 100, rate: 2, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Fresh sushi made from the finest fish!"},
+  {name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Steamed to perfection dumplings."},
+  {name: "Noodles 🍜", cost: 5000, rate: 150, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Savory noodles with a kick of spice!"},
+  {name: "Riceballs 🍙", cost: 10000, rate: 300, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Riceballs filled with a surprise!"}
 ];
 
 // Create a container for the upgrade buttons
@@ -55,12 +56,18 @@ let increment = 0; // Define the initial increment growth rate
 
 // Initialize and append each item button and its price display
 availableItems.forEach((item) => {
+  const itemContainer = document.createElement("div");
+  itemContainer.classList.add('upgrade-item');
+
   item.buttonElement.textContent = `Purchase ${item.name}`;
   item.buttonElement.disabled = true;
+  item.buttonElement.title = item.description; // Add description as tooltip
   item.priceElement.textContent = `Price: ${Math.floor(item.cost)} boxes`;
   
-  upgradesContainer.appendChild(item.buttonElement);
-  upgradesContainer.appendChild(item.priceElement);
+  itemContainer.appendChild(item.buttonElement);
+  itemContainer.appendChild(item.priceElement);
+
+  upgradesContainer.appendChild(itemContainer);
 
   item.buttonElement.addEventListener('click', () => {
       if (counter >= Math.floor(item.cost)) {
