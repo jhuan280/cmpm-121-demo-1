@@ -2,12 +2,16 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
+// Constants
+const GAME_NAME = "Jackie's Restaurant";
+const PRICE_MULTIPLIER = 1.15; // For upgrading items
+const INITIAL_INCREMENT = 0;
+
 // Title
-const gameName = "Jackie's Restaurant";
-document.title = gameName;
+document.title = GAME_NAME;
 
 const header = document.createElement("h1");
-header.innerHTML = gameName;
+header.innerHTML = GAME_NAME;
 app.append(header);
 
 //------------------primary button-------------------------
@@ -30,29 +34,29 @@ mainButton.addEventListener('click', () => {
 //------------------upgrade items-------------------------
 
 interface Item {
-  name: string;
-  cost: number;
-  rate: number;
-  purchased: number;
-  priceElement: HTMLParagraphElement;
-  buttonElement: HTMLButtonElement;
-  description: string;
+    name: string;
+    cost: number;
+    rate: number;
+    purchased: number;
+    priceElement: HTMLParagraphElement;
+    buttonElement: HTMLButtonElement;
+    description: string;
 }
 
 // Available items with descriptions
 const availableItems: Item[] = [
-  {name: "Eggrolls 🍣", cost: 10, rate: 1, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Crispy and delicious eggrolls!"},
-  {name: "Sushi 🍱", cost: 100, rate: 2, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Fresh sushi made from the finest fish!"},
-  {name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Steamed to perfection dumplings."},
-  {name: "Noodles 🍜", cost: 5000, rate: 150, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Savory noodles with a kick of spice!"},
-  {name: "Riceballs 🍙", cost: 10000, rate: 300, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Riceballs filled with a surprise!"}
+    { name: "Eggrolls 🍣", cost: 10, rate: 1, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Crispy and delicious eggrolls!" },
+    { name: "Sushi 🍱", cost: 100, rate: 2, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Fresh sushi made from the finest fish!" },
+    { name: "Dumplings 🥟", cost: 1000, rate: 50, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Steamed to perfection dumplings." },
+    { name: "Noodles 🍜", cost: 5000, rate: 150, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Savory noodles with a kick of spice!" },
+    { name: "Riceballs 🍙", cost: 10000, rate: 300, purchased: 0, priceElement: document.createElement("p"), buttonElement: document.createElement('button'), description: "Riceballs filled with a surprise!" }
 ];
 
 // Create a container for the upgrade buttons
 const upgradesContainer = document.createElement("div");
 upgradesContainer.classList.add('upgrades-container');
 
-let increment = 0; // Define the initial increment growth rate
+let increment = INITIAL_INCREMENT; // Use a constant here
 
 const initializeItems = () => {
     availableItems.forEach((item) => {
@@ -78,7 +82,7 @@ const handleItemPurchase = (item: Item) => {
     if (counter >= Math.floor(item.cost)) {
         counter -= Math.floor(item.cost);
         increment += item.rate;
-        item.cost *= 1.15;
+        item.cost *= PRICE_MULTIPLIER; // Use the constant
         item.purchased++;
         updateItemPriceDisplay(item);
         updateStatusDisplay();
