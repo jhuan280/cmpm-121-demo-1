@@ -54,36 +54,48 @@ upgradesContainer.classList.add('upgrades-container');
 
 let increment = 0; // Define the initial increment growth rate
 
-// Initialize and append each item button and its price display
-availableItems.forEach((item) => {
-  const itemContainer = document.createElement("div");
-  itemContainer.classList.add('upgrade-item');
+const initializeItems = () => {
+    availableItems.forEach((item) => {
+        const itemContainer = document.createElement("div");
+        itemContainer.classList.add('upgrade-item');
 
-  item.buttonElement.textContent = `Purchase ${item.name}`;
-  item.buttonElement.disabled = true;
-  item.buttonElement.title = item.description; // Add description as tooltip
-  item.priceElement.textContent = `Price: ${Math.floor(item.cost)} boxes`;
-  
-  itemContainer.appendChild(item.buttonElement);
-  itemContainer.appendChild(item.priceElement);
+        item.buttonElement.textContent = `Purchase ${item.name}`;
+        item.buttonElement.disabled = true;
+        item.buttonElement.title = item.description;
 
-  upgradesContainer.appendChild(itemContainer);
+        item.priceElement.textContent = `Price: ${Math.floor(item.cost)} boxes`;
+        itemContainer.appendChild(item.buttonElement);
+        itemContainer.appendChild(item.priceElement);
 
-  item.buttonElement.addEventListener('click', () => {
-      if (counter >= Math.floor(item.cost)) {
-          counter -= Math.floor(item.cost); // Deduct units from the counter
-          increment += item.rate; // Increase increment rate based on item
-          item.cost *= 1.15; // Increase the price exponentially
-          item.purchased++;
-          updateStatusDisplay(); // Update status display
-          checkUpgradeAvailability(); // Re-check after purchase
-          item.priceElement.textContent = `Price: ${Math.floor(item.cost)} boxes`; // Update price display
-      }
-  });
-});
+        upgradesContainer.appendChild(itemContainer);
+
+        item.buttonElement.addEventListener('click', () => handleItemPurchase(item));
+    });
+};
+
+// Function to handle item purchase
+const handleItemPurchase = (item: Item) => {
+    if (counter >= Math.floor(item.cost)) {
+        counter -= Math.floor(item.cost);
+        increment += item.rate;
+        item.cost *= 1.15;
+        item.purchased++;
+        updateItemPriceDisplay(item);
+        updateStatusDisplay();
+        checkUpgradeAvailability();
+    }
+};
+
+// Function to update the item price display
+const updateItemPriceDisplay = (item: Item) => {
+    item.priceElement.textContent = `Price: ${Math.floor(item.cost)} boxes`;
+};
 
 // Append the upgrades container to the app div
 app.appendChild(upgradesContainer);
+
+// Call the initialization function
+initializeItems();
 
 //------------------counter and status display-------------------------
 
