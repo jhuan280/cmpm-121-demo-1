@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: orange; /* Background color set to orange */
+  background-color: white; /* Set background color to white */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: white; /* Ensure body background is white */
 }
 
 h1 {
@@ -65,7 +66,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: orange; /* Maintain orange background for light mode */
+    background-color: white; /* Maintain white background for light mode */
   }
   a:hover {
     color: #747bff;
@@ -101,4 +102,14 @@ button:focus-visible {
 
 .upgrade-item p {
   margin: 0; /* Remove default margin from price paragraph */
+}
+
+/* Update the button styles in your CSS file */
+
+button.unavailable {
+  background-color: rgba(255, 0, 0, 0.3); /* Light red background for unavailable buttons */
+}
+
+button.available {
+  background-color: rgba(0, 255, 0, 0.3); /* Light green background for available buttons */
 }

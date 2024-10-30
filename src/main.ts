@@ -142,6 +142,15 @@ const updateCounter = (currentTimestamp: number) => {
 const checkUpgradeAvailability = () => {
     availableItems.forEach(item => {
         item.buttonElement.disabled = Math.floor(counter) < Math.floor(item.cost);
+
+        // Apply the class to the button
+        if (Math.floor(counter) < Math.floor(item.cost)) {
+            item.buttonElement.classList.add('unavailable');
+            item.buttonElement.classList.remove('available');
+        } else {
+            item.buttonElement.classList.add('available');
+            item.buttonElement.classList.remove('unavailable');
+        }
     });
 }
 
