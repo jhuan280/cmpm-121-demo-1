@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: white; /* Set background color to white */
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,12 +29,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: white; /* Ensure body background is white */
+  background-color: white;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  animation: bounce 2s infinite; /* Apply bounce animation infinitely */
 }
 
 #app {
@@ -66,7 +67,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: white; /* Maintain white background for light mode */
+    background-color: white;
   }
   a:hover {
     color: #747bff;
@@ -77,39 +78,50 @@ button:focus-visible {
 }
 
 .main-button {
-  font-size: 10em; /* Large emoji size for the main button */
+  font-size: 10em;
   padding: 10px 20px;
   border-radius: 8px;
-  background-color: transparent; /* Transparent background */
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .upgrades-container {
   display: flex;
-  justify-content: space-around; /* Space between the items in the container */
-  align-items: center; /* Align items vertically */
-  flex-wrap: wrap; /* Allow wrapping for responsive layout */
-  gap: 20px; /* Space between items in the container */
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .upgrade-item {
   display: flex;
-  flex-direction: row; /* Align button and price side by side */
-  align-items: center; /* Vertically center items */
-  gap: 5px; /* Reduced space between button and price */
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 .upgrade-item p {
-  margin: 0; /* Remove default margin from price paragraph */
+  margin: 0;
 }
 
-/* Update the button styles in your CSS file */
-
 button.unavailable {
-  background-color: rgba(255, 0, 0, 0.3); /* Light red background for unavailable buttons */
+  background-color: rgba(255, 0, 0, 0.3);
 }
 
 button.available {
-  background-color: rgba(0, 255, 0, 0.3); /* Light green background for available buttons */
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+/* Define bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
 }
