@@ -29,6 +29,12 @@ mainButton.addEventListener('click', () => {
     counter++; 
     updateCounterDisplay(); 
     checkUpgradeAvailability();
+
+    // Add bounce effect class temporarily
+    mainButton.classList.add('bounce');
+    setTimeout(() => {
+        mainButton.classList.remove('bounce');
+    }, 500); // Match this with the animation duration in CSS
 });
 
 //------------------upgrade items-------------------------
